@@ -13,9 +13,5 @@ namespace KlinicPlus.Controllers
         {
             return View();
         }
-        public void myfunction()
-        {
-
-        }
     }
 }
