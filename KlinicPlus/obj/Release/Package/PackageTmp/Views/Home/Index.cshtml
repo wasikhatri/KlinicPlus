@@ -1,0 +1,187 @@
+﻿
+@{
+    Layout = null;
+
+}
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from new.uouapps.com/tiger-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Sep 2016 08:43:17 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Klinic Plus</title>
+
+    <!-- Fonts Online -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="~/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/css/main-style.css">
+    <link rel="stylesheet" href="~/css/style.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Top Toolbar -->
+        <!-- end toolbar -->
+
+        <div class="box-shadow-for-ui">
+            <div class="uou-block-2b">
+                <div class="container">
+                    <a href="#" class="logo"><img src="images/logo.png" alt=""></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
+                </div>
+            </div>
+            <!-- end .uou-block-2b -->
+        </div>
+
+        <!-- HOME PRO-->
+        <div class="home-pro">
+
+            <!-- PRO BANNER HEAD -->
+            <div class="banr-head">
+                <div class="container">
+                    <div class="row">
+
+                        <!-- CONTENT -->
+                        <div class="col-sm-7">
+                            <div class="text-area">
+                                <div class="position-center-center col-md-10">
+                                    <h1> Here comes the social networking platform that you’ve been waiting for</h1>                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FORM SECTION -->
+                        <div class="col-sm-5">
+                            <div class="login-sec">
+
+                                <!-- TABS -->
+                                <div class="uou-tabs">
+                                    <ul class="tabs">
+                                        <li><a href="#register">Register Now</a></li>
+                                        <li class="active"><a href="#log-in">Member Login</a></li>
+                                    </ul>
+
+                                    <!-- REGISTER -->
+                                    <div class="content">
+                                        <div id="register" class="active">
+                                            @*<form method="post">
+                                                @Html.TextBox("Email", "", new { placeholder = "Email" })
+                                                @Html.Password("Password", "", new { placeholder = "Password" })
+                                                Doctor @Html.RadioButton("type", "Doctor")
+                                                Patient @Html.RadioButton("type", "Patient")
+                                                @Html.TextBox("Firstname", "", new { placeholder = "Firstname" })
+                                                @Html.TextBox("Lastname", "", new { placeholder = "Lastname" })
+                                                @Html.TextBox("Gender", "", new { placeholder = "Gender" })
+                                                @Html.ActionLink("Register", "Register", new { })                                                
+                                            </form>*@
+                                            @using (Html.BeginForm("Register", "", FormMethod.Post, new { id = "some"}))
+                                            {
+                                                <input type="text" name="email" value="" placeholder="Email" />
+                                                <input type="password" name="password" value="" placeholder="Password" />
+                                                <input type="radio" name="type" value="Patient"/>
+                                                <input type="radio" name="type" value="Doctor"/>
+                                                <input type="text" name="firstname" value="" placeholder="Firstname" />
+                                                <input type="text" name="lastname" value="" placeholder="Lastname" />
+                                                <select name="gender">
+                                                    <option value="0">Select Gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+                                                <input type="date" name="dob" value="" placeholder="Date Of Birth" style="color: lightgray;" />
+                                                <select name="country" id="country">
+                                                    <option value="0">Select Country</option>
+                                                    <option value="Pakistan">Pakistan</option>
+                                                </select>
+                                                <select name="city" id="city">
+                                                    <option value="0">Select City</option>
+                                                </select>
+                                                <div class="login-with"></div>
+                                                <button type="submit">Register</button>
+                                            }
+                                        </div>
+                                        <!-- LOGIN -->
+                                        <div id="log-in">
+                                            @*<form method="post">
+                                                @Html.TextBox("UserId", "", new { placeholder = "Email" })
+                                                @Html.Password("Password", "", new { placeholder = "Password" })
+                                                <button type="submit" id="submit">Login</button>                                                
+                                                <div class="login-with"> </div>
+                                                <div class="forget">Forgot your password? <a href="#.">Click Here</a></div>
+                                            </form>*@
+                                            @using (Html.BeginForm("Index", "", FormMethod.Post))
+                                            {
+                                                <input type="text" name="email" placeholder="Email" />
+                                                <input type="password" name="password" placeholder="Passowrd" />
+                                                <button type="submit" id="submit">Login</button>
+                                                <div class="login-with"> </div>
+                                                <div class="forget">Forgot your password? <a href="#.">Click Here</a></div>
+                                            }
+                                        </div>
+                                        <div id="forget">
+                                            <form>
+                                                <input type="email" placeholder="Email Address">
+                                                <button type="submit">Login</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Scripts -->
+            <script src="https://maps.googleapis.com/maps/api/js"></script>
+            <script src="~/js/jquery-2.1.3.min.js"></script>
+            <script src="~/js/bootstrap.js"></script>
+            <script src="~/js/plugins/superfish.min.js"></script>
+            <script src="~/js/jquery.ui.min.js"></script>
+            <script src="~/js/plugins/rangeslider.min.js"></script>
+            <script src="~/js/plugins/jquery.flexslider-min.js"></script>
+            <script src="~/js/uou-accordions.js"></script>
+            <script src="~/js/uou-tabs.js"></script>
+            <script src="~/js/plugins/select2.min.js"></script>
+            <script src="~/js/owl.carousel.min.js"></script>
+            <script src="~/js/gmap3.min.js"></script>
+            <script src="~/js/scripts.js"></script>
+            <script type="text/javascript">
+                $("#country").change(function () {
+                    var Country = {};
+                    Country.CountryName = $("#country").val();
+                    var url = "http://localhost:6887/api/GetCities/";
+                    var option = [];
+                    $.ajax({
+                        method: 'POST',
+                        url: url,
+                        dataType: 'json',
+                        data: Country,
+                        success: function (data) {
+                            var array = JSON.parse(data);
+                            //console.log(array);
+                            for(var i = 0; i < array.length; i++)
+                            {
+                                option.push('<option value="'+array[i]+'">'+array[i]+'</option>');
+                            }
+                            $("#city").html(option.join(''));
+                        },
+                        error: function (data) {//status is Error and the errorThrown is undefined
+                            alert();
+                        }
+                    });
+                });
+            </script>
+    </div>
+        </div>
+            </body>
+</html>

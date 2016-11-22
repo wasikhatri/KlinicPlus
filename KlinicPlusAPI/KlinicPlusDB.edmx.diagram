@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7cc95bb6c2c34933a2b6f200dda7b699" Name="Diagram1">
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_countries" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_discussion" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_disReplies" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_doctor" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_inbox" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_meals" Width="1.5" PointX="5.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_member" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_MHlogmeals" Width="1.5" PointX="8" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_MHweighttracker" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinicPlusModel.tbl_users" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_discu__user___31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_disRe__discu__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_disRe__user___35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_docto__user___15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_inbox__docto__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_inbox__membe__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_MHlog__meal___1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_membe__user___1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_MHlog__user___1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinicPlusModel.FK__tbl_MHwei__user___1BFD2C07" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,791 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KlinicPlusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_countries">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_discussion">
+          <Key>
+            <PropertyRef Name="discussion_id" />
+          </Key>
+          <Property Name="discussion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subject" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateCreated" Type="date" Nullable="false" />
+          <Property Name="timeCreated" Type="time" Precision="7" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_disReplies">
+          <Key>
+            <PropertyRef Name="replies_id" />
+          </Key>
+          <Property Name="replies_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateCreated" Type="date" Nullable="false" />
+          <Property Name="time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="reply" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="discussion_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_doctor">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hopitalName" Type="varchar" MaxLength="255" />
+          <Property Name="contactNumber" Type="int" />
+          <Property Name="speciality" Type="varchar" MaxLength="255" />
+          <Property Name="qualification" Type="varchar" MaxLength="255" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_inbox">
+          <Key>
+            <PropertyRef Name="inbox_id" />
+          </Key>
+          <Property Name="inbox_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="message" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="member_id" Type="int" />
+          <Property Name="doctor_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_meals">
+          <Key>
+            <PropertyRef Name="meal_id" />
+          </Key>
+          <Property Name="meal_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mealType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="mealName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="mealQty" Type="int" Nullable="false" />
+          <Property Name="mealCalories" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_member">
+          <Key>
+            <PropertyRef Name="member_id" />
+          </Key>
+          <Property Name="member_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="home_phone" Type="int" />
+          <Property Name="cell_phone" Type="int" />
+          <Property Name="cnic" Type="int" />
+          <Property Name="bloodgroup" Type="varchar" MaxLength="3" />
+          <Property Name="maritalstatus" Type="varchar" MaxLength="25" />
+          <Property Name="e_contactName" Type="varchar" MaxLength="25" />
+          <Property Name="e_contactNumber" Type="int" />
+          <Property Name="medicalHistory" Type="varchar" MaxLength="100" />
+          <Property Name="familyHistory" Type="varchar" MaxLength="100" />
+          <Property Name="allergies" Type="varchar" MaxLength="50" />
+          <Property Name="symptoms" Type="varchar" MaxLength="50" />
+          <Property Name="treatments" Type="varchar" MaxLength="100" />
+          <Property Name="habits" Type="varchar" MaxLength="100" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_MHlogmeals">
+          <Key>
+            <PropertyRef Name="mealLog_id" />
+          </Key>
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="timeCreated" Type="time" Precision="7" Nullable="false" />
+          <Property Name="allowedCalories" Type="int" />
+          <Property Name="caloriesConsumed" Type="int" />
+          <Property Name="caloriesLeft" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="meal_id" Type="int" />
+          <Property Name="mealLog_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_MHweighttracker">
+          <Key>
+            <PropertyRef Name="weight_id" />
+          </Key>
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="timeCreated" Type="time" Precision="7" Nullable="false" />
+          <Property Name="targetWeight" Type="int" Nullable="false" />
+          <Property Name="currentWeight" Type="int" Nullable="false" />
+          <Property Name="exName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="exTime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="weightLost" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="weight_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+          <Property Name="type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="gender" Type="varchar" MaxLength="6" />
+          <Property Name="dob" Type="date" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__tbl_discu__user___31EC6D26">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_discussion" Type="Self.tbl_discussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_discussion">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_disRe__discu__34C8D9D1">
+          <End Role="tbl_discussion" Type="Self.tbl_discussion" Multiplicity="0..1" />
+          <End Role="tbl_disReplies" Type="Self.tbl_disReplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_discussion">
+              <PropertyRef Name="discussion_id" />
+            </Principal>
+            <Dependent Role="tbl_disReplies">
+              <PropertyRef Name="discussion_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_disRe__user___35BCFE0A">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_disReplies" Type="Self.tbl_disReplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_disReplies">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_docto__user___15502E78">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_doctor" Type="Self.tbl_doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_doctor">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_inbox__docto__24927208">
+          <End Role="tbl_doctor" Type="Self.tbl_doctor" Multiplicity="0..1" />
+          <End Role="tbl_inbox" Type="Self.tbl_inbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_doctor">
+              <PropertyRef Name="doctor_id" />
+            </Principal>
+            <Dependent Role="tbl_inbox">
+              <PropertyRef Name="doctor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_inbox__membe__239E4DCF">
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="0..1" />
+          <End Role="tbl_inbox" Type="Self.tbl_inbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="tbl_inbox">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_membe__user___1273C1CD">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_member">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_MHlog__meal___1A14E395">
+          <End Role="tbl_meals" Type="Self.tbl_meals" Multiplicity="0..1" />
+          <End Role="tbl_MHlogmeals" Type="Self.tbl_MHlogmeals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_meals">
+              <PropertyRef Name="meal_id" />
+            </Principal>
+            <Dependent Role="tbl_MHlogmeals">
+              <PropertyRef Name="meal_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_MHlog__user___1920BF5C">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_MHlogmeals" Type="Self.tbl_MHlogmeals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_MHlogmeals">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_MHwei__user___1BFD2C07">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_MHweighttracker" Type="Self.tbl_MHweighttracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_MHweighttracker">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KlinicPlusModelStoreContainer">
+          <EntitySet Name="tbl_countries" EntityType="Self.tbl_countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_discussion" EntityType="Self.tbl_discussion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_disReplies" EntityType="Self.tbl_disReplies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_doctor" EntityType="Self.tbl_doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_inbox" EntityType="Self.tbl_inbox" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_meals" EntityType="Self.tbl_meals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_member" EntityType="Self.tbl_member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MHlogmeals" EntityType="Self.tbl_MHlogmeals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MHweighttracker" EntityType="Self.tbl_MHweighttracker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_discu__user___31EC6D26" Association="Self.FK__tbl_discu__user___31EC6D26">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_discussion" EntitySet="tbl_discussion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_disRe__discu__34C8D9D1" Association="Self.FK__tbl_disRe__discu__34C8D9D1">
+            <End Role="tbl_discussion" EntitySet="tbl_discussion" />
+            <End Role="tbl_disReplies" EntitySet="tbl_disReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_disRe__user___35BCFE0A" Association="Self.FK__tbl_disRe__user___35BCFE0A">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_disReplies" EntitySet="tbl_disReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_docto__user___15502E78" Association="Self.FK__tbl_docto__user___15502E78">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_doctor" EntitySet="tbl_doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_inbox__docto__24927208" Association="Self.FK__tbl_inbox__docto__24927208">
+            <End Role="tbl_doctor" EntitySet="tbl_doctor" />
+            <End Role="tbl_inbox" EntitySet="tbl_inbox" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_inbox__membe__239E4DCF" Association="Self.FK__tbl_inbox__membe__239E4DCF">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_inbox" EntitySet="tbl_inbox" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_membe__user___1273C1CD" Association="Self.FK__tbl_membe__user___1273C1CD">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_member" EntitySet="tbl_member" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_MHlog__meal___1A14E395" Association="Self.FK__tbl_MHlog__meal___1A14E395">
+            <End Role="tbl_meals" EntitySet="tbl_meals" />
+            <End Role="tbl_MHlogmeals" EntitySet="tbl_MHlogmeals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_MHlog__user___1920BF5C" Association="Self.FK__tbl_MHlog__user___1920BF5C">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_MHlogmeals" EntitySet="tbl_MHlogmeals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_MHwei__user___1BFD2C07" Association="Self.FK__tbl_MHwei__user___1BFD2C07">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_MHweighttracker" EntitySet="tbl_MHweighttracker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KlinicPlusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_countries">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_discussion">
+          <Key>
+            <PropertyRef Name="discussion_id" />
+          </Key>
+          <Property Name="discussion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="timeCreated" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="tbl_users" Relationship="Self.FK__tbl_discu__user___31EC6D26" FromRole="tbl_discussion" ToRole="tbl_users" />
+          <NavigationProperty Name="tbl_disReplies" Relationship="Self.FK__tbl_disRe__discu__34C8D9D1" FromRole="tbl_discussion" ToRole="tbl_disReplies" />
+        </EntityType>
+        <EntityType Name="tbl_disReplies">
+          <Key>
+            <PropertyRef Name="replies_id" />
+          </Key>
+          <Property Name="replies_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="reply" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="discussion_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="tbl_discussion" Relationship="Self.FK__tbl_disRe__discu__34C8D9D1" FromRole="tbl_disReplies" ToRole="tbl_discussion" />
+          <NavigationProperty Name="tbl_users" Relationship="Self.FK__tbl_disRe__user___35BCFE0A" FromRole="tbl_disReplies" ToRole="tbl_users" />
+        </EntityType>
+        <EntityType Name="tbl_doctor">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hopitalName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="contactNumber" Type="Int32" />
+          <Property Name="speciality" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="qualification" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="tbl_users" Relationship="Self.FK__tbl_docto__user___15502E78" FromRole="tbl_doctor" ToRole="tbl_users" />
+          <NavigationProperty Name="tbl_inbox" Relationship="Self.FK__tbl_inbox__docto__24927208" FromRole="tbl_doctor" ToRole="tbl_inbox" />
+        </EntityType>
+        <EntityType Name="tbl_inbox">
+          <Key>
+            <PropertyRef Name="inbox_id" />
+          </Key>
+          <Property Name="inbox_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="member_id" Type="Int32" />
+          <Property Name="doctor_id" Type="Int32" />
+          <NavigationProperty Name="tbl_doctor" Relationship="Self.FK__tbl_inbox__docto__24927208" FromRole="tbl_inbox" ToRole="tbl_doctor" />
+          <NavigationProperty Name="tbl_member" Relationship="Self.FK__tbl_inbox__membe__239E4DCF" FromRole="tbl_inbox" ToRole="tbl_member" />
+        </EntityType>
+        <EntityType Name="tbl_meals">
+          <Key>
+            <PropertyRef Name="meal_id" />
+          </Key>
+          <Property Name="meal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mealType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mealName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mealQty" Type="Int32" Nullable="false" />
+          <Property Name="mealCalories" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_MHlogmeals" Relationship="Self.FK__tbl_MHlog__meal___1A14E395" FromRole="tbl_meals" ToRole="tbl_MHlogmeals" />
+        </EntityType>
+        <EntityType Name="tbl_member">
+          <Key>
+            <PropertyRef Name="member_id" />
+          </Key>
+          <Property Name="member_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="home_phone" Type="Int32" />
+          <Property Name="cell_phone" Type="Int32" />
+          <Property Name="cnic" Type="Int32" />
+          <Property Name="bloodgroup" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="maritalstatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="e_contactName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="e_contactNumber" Type="Int32" />
+          <Property Name="medicalHistory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="familyHistory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="allergies" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="symptoms" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="treatments" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="habits" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="tbl_inbox" Relationship="Self.FK__tbl_inbox__membe__239E4DCF" FromRole="tbl_member" ToRole="tbl_inbox" />
+          <NavigationProperty Name="tbl_users" Relationship="Self.FK__tbl_membe__user___1273C1CD" FromRole="tbl_member" ToRole="tbl_users" />
+        </EntityType>
+        <EntityType Name="tbl_MHlogmeals">
+          <Key>
+            <PropertyRef Name="mealLog_id" />
+          </Key>
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="timeCreated" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="allowedCalories" Type="Int32" />
+          <Property Name="caloriesConsumed" Type="Int32" />
+          <Property Name="caloriesLeft" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="meal_id" Type="Int32" />
+          <Property Name="mealLog_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="tbl_meals" Relationship="Self.FK__tbl_MHlog__meal___1A14E395" FromRole="tbl_MHlogmeals" ToRole="tbl_meals" />
+          <NavigationProperty Name="tbl_users" Relationship="Self.FK__tbl_MHlog__user___1920BF5C" FromRole="tbl_MHlogmeals" ToRole="tbl_users" />
+        </EntityType>
+        <EntityType Name="tbl_MHweighttracker">
+          <Key>
+            <PropertyRef Name="weight_id" />
+          </Key>
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="timeCreated" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="targetWeight" Type="Int32" Nullable="false" />
+          <Property Name="currentWeight" Type="Int32" Nullable="false" />
+          <Property Name="exName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="exTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="weightLost" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="weight_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="tbl_users" Relationship="Self.FK__tbl_MHwei__user___1BFD2C07" FromRole="tbl_MHweighttracker" ToRole="tbl_users" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_discussion" Relationship="Self.FK__tbl_discu__user___31EC6D26" FromRole="tbl_users" ToRole="tbl_discussion" />
+          <NavigationProperty Name="tbl_disReplies" Relationship="Self.FK__tbl_disRe__user___35BCFE0A" FromRole="tbl_users" ToRole="tbl_disReplies" />
+          <NavigationProperty Name="tbl_doctor" Relationship="Self.FK__tbl_docto__user___15502E78" FromRole="tbl_users" ToRole="tbl_doctor" />
+          <NavigationProperty Name="tbl_member" Relationship="Self.FK__tbl_membe__user___1273C1CD" FromRole="tbl_users" ToRole="tbl_member" />
+          <NavigationProperty Name="tbl_MHlogmeals" Relationship="Self.FK__tbl_MHlog__user___1920BF5C" FromRole="tbl_users" ToRole="tbl_MHlogmeals" />
+          <NavigationProperty Name="tbl_MHweighttracker" Relationship="Self.FK__tbl_MHwei__user___1BFD2C07" FromRole="tbl_users" ToRole="tbl_MHweighttracker" />
+        </EntityType>
+        <Association Name="FK__tbl_discu__user___31EC6D26">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_discussion" Type="Self.tbl_discussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_discussion">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_disRe__discu__34C8D9D1">
+          <End Role="tbl_discussion" Type="Self.tbl_discussion" Multiplicity="0..1" />
+          <End Role="tbl_disReplies" Type="Self.tbl_disReplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_discussion">
+              <PropertyRef Name="discussion_id" />
+            </Principal>
+            <Dependent Role="tbl_disReplies">
+              <PropertyRef Name="discussion_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_disRe__user___35BCFE0A">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_disReplies" Type="Self.tbl_disReplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_disReplies">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_docto__user___15502E78">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_doctor" Type="Self.tbl_doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_doctor">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_inbox__docto__24927208">
+          <End Role="tbl_doctor" Type="Self.tbl_doctor" Multiplicity="0..1" />
+          <End Role="tbl_inbox" Type="Self.tbl_inbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_doctor">
+              <PropertyRef Name="doctor_id" />
+            </Principal>
+            <Dependent Role="tbl_inbox">
+              <PropertyRef Name="doctor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_inbox__membe__239E4DCF">
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="0..1" />
+          <End Role="tbl_inbox" Type="Self.tbl_inbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="member_id" />
+            </Principal>
+            <Dependent Role="tbl_inbox">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_MHlog__meal___1A14E395">
+          <End Role="tbl_meals" Type="Self.tbl_meals" Multiplicity="0..1" />
+          <End Role="tbl_MHlogmeals" Type="Self.tbl_MHlogmeals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_meals">
+              <PropertyRef Name="meal_id" />
+            </Principal>
+            <Dependent Role="tbl_MHlogmeals">
+              <PropertyRef Name="meal_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_membe__user___1273C1CD">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_member">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_MHlog__user___1920BF5C">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_MHlogmeals" Type="Self.tbl_MHlogmeals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_MHlogmeals">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_MHwei__user___1BFD2C07">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_MHweighttracker" Type="Self.tbl_MHweighttracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_MHweighttracker">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KlinicPlusEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_countries" EntityType="Self.tbl_countries" />
+          <EntitySet Name="tbl_discussion" EntityType="Self.tbl_discussion" />
+          <EntitySet Name="tbl_disReplies" EntityType="Self.tbl_disReplies" />
+          <EntitySet Name="tbl_doctor" EntityType="Self.tbl_doctor" />
+          <EntitySet Name="tbl_inbox" EntityType="Self.tbl_inbox" />
+          <EntitySet Name="tbl_meals" EntityType="Self.tbl_meals" />
+          <EntitySet Name="tbl_member" EntityType="Self.tbl_member" />
+          <EntitySet Name="tbl_MHlogmeals" EntityType="Self.tbl_MHlogmeals" />
+          <EntitySet Name="tbl_MHweighttracker" EntityType="Self.tbl_MHweighttracker" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" />
+          <AssociationSet Name="FK__tbl_discu__user___31EC6D26" Association="Self.FK__tbl_discu__user___31EC6D26">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_discussion" EntitySet="tbl_discussion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_disRe__discu__34C8D9D1" Association="Self.FK__tbl_disRe__discu__34C8D9D1">
+            <End Role="tbl_discussion" EntitySet="tbl_discussion" />
+            <End Role="tbl_disReplies" EntitySet="tbl_disReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_disRe__user___35BCFE0A" Association="Self.FK__tbl_disRe__user___35BCFE0A">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_disReplies" EntitySet="tbl_disReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_docto__user___15502E78" Association="Self.FK__tbl_docto__user___15502E78">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_doctor" EntitySet="tbl_doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_inbox__docto__24927208" Association="Self.FK__tbl_inbox__docto__24927208">
+            <End Role="tbl_doctor" EntitySet="tbl_doctor" />
+            <End Role="tbl_inbox" EntitySet="tbl_inbox" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_inbox__membe__239E4DCF" Association="Self.FK__tbl_inbox__membe__239E4DCF">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_inbox" EntitySet="tbl_inbox" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_MHlog__meal___1A14E395" Association="Self.FK__tbl_MHlog__meal___1A14E395">
+            <End Role="tbl_meals" EntitySet="tbl_meals" />
+            <End Role="tbl_MHlogmeals" EntitySet="tbl_MHlogmeals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_membe__user___1273C1CD" Association="Self.FK__tbl_membe__user___1273C1CD">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_member" EntitySet="tbl_member" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_MHlog__user___1920BF5C" Association="Self.FK__tbl_MHlog__user___1920BF5C">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_MHlogmeals" EntitySet="tbl_MHlogmeals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_MHwei__user___1BFD2C07" Association="Self.FK__tbl_MHwei__user___1BFD2C07">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_MHweighttracker" EntitySet="tbl_MHweighttracker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KlinicPlusModelStoreContainer" CdmEntityContainer="KlinicPlusEntities">
+          <EntitySetMapping Name="tbl_countries">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_countries">
+              <MappingFragment StoreEntitySet="tbl_countries">
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="city" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_discussion">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_discussion">
+              <MappingFragment StoreEntitySet="tbl_discussion">
+                <ScalarProperty Name="discussion_id" ColumnName="discussion_id" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="timeCreated" ColumnName="timeCreated" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_disReplies">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_disReplies">
+              <MappingFragment StoreEntitySet="tbl_disReplies">
+                <ScalarProperty Name="replies_id" ColumnName="replies_id" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="reply" ColumnName="reply" />
+                <ScalarProperty Name="discussion_id" ColumnName="discussion_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_doctor">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_doctor">
+              <MappingFragment StoreEntitySet="tbl_doctor">
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+                <ScalarProperty Name="hopitalName" ColumnName="hopitalName" />
+                <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+                <ScalarProperty Name="speciality" ColumnName="speciality" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_inbox">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_inbox">
+              <MappingFragment StoreEntitySet="tbl_inbox">
+                <ScalarProperty Name="inbox_id" ColumnName="inbox_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_meals">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_meals">
+              <MappingFragment StoreEntitySet="tbl_meals">
+                <ScalarProperty Name="meal_id" ColumnName="meal_id" />
+                <ScalarProperty Name="mealType" ColumnName="mealType" />
+                <ScalarProperty Name="mealName" ColumnName="mealName" />
+                <ScalarProperty Name="mealQty" ColumnName="mealQty" />
+                <ScalarProperty Name="mealCalories" ColumnName="mealCalories" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_member">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_member">
+              <MappingFragment StoreEntitySet="tbl_member">
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="home_phone" ColumnName="home_phone" />
+                <ScalarProperty Name="cell_phone" ColumnName="cell_phone" />
+                <ScalarProperty Name="cnic" ColumnName="cnic" />
+                <ScalarProperty Name="bloodgroup" ColumnName="bloodgroup" />
+                <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
+                <ScalarProperty Name="e_contactName" ColumnName="e_contactName" />
+                <ScalarProperty Name="e_contactNumber" ColumnName="e_contactNumber" />
+                <ScalarProperty Name="medicalHistory" ColumnName="medicalHistory" />
+                <ScalarProperty Name="familyHistory" ColumnName="familyHistory" />
+                <ScalarProperty Name="allergies" ColumnName="allergies" />
+                <ScalarProperty Name="symptoms" ColumnName="symptoms" />
+                <ScalarProperty Name="treatments" ColumnName="treatments" />
+                <ScalarProperty Name="habits" ColumnName="habits" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MHlogmeals">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_MHlogmeals">
+              <MappingFragment StoreEntitySet="tbl_MHlogmeals">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="timeCreated" ColumnName="timeCreated" />
+                <ScalarProperty Name="allowedCalories" ColumnName="allowedCalories" />
+                <ScalarProperty Name="caloriesConsumed" ColumnName="caloriesConsumed" />
+                <ScalarProperty Name="caloriesLeft" ColumnName="caloriesLeft" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="meal_id" ColumnName="meal_id" />
+                <ScalarProperty Name="mealLog_id" ColumnName="mealLog_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MHweighttracker">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_MHweighttracker">
+              <MappingFragment StoreEntitySet="tbl_MHweighttracker">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="timeCreated" ColumnName="timeCreated" />
+                <ScalarProperty Name="targetWeight" ColumnName="targetWeight" />
+                <ScalarProperty Name="currentWeight" ColumnName="currentWeight" />
+                <ScalarProperty Name="exName" ColumnName="exName" />
+                <ScalarProperty Name="exTime" ColumnName="exTime" />
+                <ScalarProperty Name="weightLost" ColumnName="weightLost" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="weight_id" ColumnName="weight_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_users">
+            <EntityTypeMapping TypeName="KlinicPlusModel.tbl_users">
+              <MappingFragment StoreEntitySet="tbl_users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

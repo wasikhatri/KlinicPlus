@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KlinicPlusModelStoreContainer" CdmEntityContainer="KlinicPlusEntities">
+    <EntitySetMapping Name="tbl_countries">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_countries">
+        <MappingFragment StoreEntitySet="tbl_countries">
+          <ScalarProperty Name="country_id" ColumnName="country_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="city" ColumnName="city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_discussion">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_discussion">
+        <MappingFragment StoreEntitySet="tbl_discussion">
+          <ScalarProperty Name="discussion_id" ColumnName="discussion_id" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+          <ScalarProperty Name="timeCreated" ColumnName="timeCreated" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_disReplies">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_disReplies">
+        <MappingFragment StoreEntitySet="tbl_disReplies">
+          <ScalarProperty Name="replies_id" ColumnName="replies_id" />
+          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="reply" ColumnName="reply" />
+          <ScalarProperty Name="discussion_id" ColumnName="discussion_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_doctor">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_doctor">
+        <MappingFragment StoreEntitySet="tbl_doctor">
+          <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+          <ScalarProperty Name="hopitalName" ColumnName="hopitalName" />
+          <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+          <ScalarProperty Name="speciality" ColumnName="speciality" />
+          <ScalarProperty Name="qualification" ColumnName="qualification" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_inbox">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_inbox">
+        <MappingFragment StoreEntitySet="tbl_inbox">
+          <ScalarProperty Name="inbox_id" ColumnName="inbox_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_meals">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_meals">
+        <MappingFragment StoreEntitySet="tbl_meals">
+          <ScalarProperty Name="meal_id" ColumnName="meal_id" />
+          <ScalarProperty Name="mealType" ColumnName="mealType" />
+          <ScalarProperty Name="mealName" ColumnName="mealName" />
+          <ScalarProperty Name="mealQty" ColumnName="mealQty" />
+          <ScalarProperty Name="mealCalories" ColumnName="mealCalories" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_member">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_member">
+        <MappingFragment StoreEntitySet="tbl_member">
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="home_phone" ColumnName="home_phone" />
+          <ScalarProperty Name="cell_phone" ColumnName="cell_phone" />
+          <ScalarProperty Name="cnic" ColumnName="cnic" />
+          <ScalarProperty Name="bloodgroup" ColumnName="bloodgroup" />
+          <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
+          <ScalarProperty Name="e_contactName" ColumnName="e_contactName" />
+          <ScalarProperty Name="e_contactNumber" ColumnName="e_contactNumber" />
+          <ScalarProperty Name="medicalHistory" ColumnName="medicalHistory" />
+          <ScalarProperty Name="familyHistory" ColumnName="familyHistory" />
+          <ScalarProperty Name="allergies" ColumnName="allergies" />
+          <ScalarProperty Name="symptoms" ColumnName="symptoms" />
+          <ScalarProperty Name="treatments" ColumnName="treatments" />
+          <ScalarProperty Name="habits" ColumnName="habits" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_MHlogmeals">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_MHlogmeals">
+        <MappingFragment StoreEntitySet="tbl_MHlogmeals">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="timeCreated" ColumnName="timeCreated" />
+          <ScalarProperty Name="allowedCalories" ColumnName="allowedCalories" />
+          <ScalarProperty Name="caloriesConsumed" ColumnName="caloriesConsumed" />
+          <ScalarProperty Name="caloriesLeft" ColumnName="caloriesLeft" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="meal_id" ColumnName="meal_id" />
+          <ScalarProperty Name="mealLog_id" ColumnName="mealLog_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_MHweighttracker">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_MHweighttracker">
+        <MappingFragment StoreEntitySet="tbl_MHweighttracker">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="timeCreated" ColumnName="timeCreated" />
+          <ScalarProperty Name="targetWeight" ColumnName="targetWeight" />
+          <ScalarProperty Name="currentWeight" ColumnName="currentWeight" />
+          <ScalarProperty Name="exName" ColumnName="exName" />
+          <ScalarProperty Name="exTime" ColumnName="exTime" />
+          <ScalarProperty Name="weightLost" ColumnName="weightLost" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="weight_id" ColumnName="weight_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_users">
+      <EntityTypeMapping TypeName="KlinicPlusModel.tbl_users">
+        <MappingFragment StoreEntitySet="tbl_users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="city" ColumnName="city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
