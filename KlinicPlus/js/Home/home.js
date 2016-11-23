@@ -1,4 +1,5 @@
-﻿$("#country").change(function () {
+﻿
+$("#country").change(function () {
     var Country = {};
     Country.CountryName = $("#country").val();
     var url = "http://localhost:6887/api/GetCities/";
@@ -54,24 +55,8 @@ $("#emailReg").blur(function () {
             alert("false");
         }
     });
-    //ALways check the scope of the function...
-    // if you write the code here... to Email keh blur execute hoga..
-});//is it okay?
+});
 
-
-//yahan se start kero..ok i though i was out of this function..
-
-//$("#password").blur(function () {
-
-//    //var pass = $("#password").val();
-//    if ($("#password").filter(function () {
-//        return this.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8})$/);
-//    })) {
-//        $("div").text("pass");
-//    } else {
-//        $("div").text("fail");
-//    }
-//});
 
 $("#btnRegister").click(function () {
     if ($("#emailReg").val() == "") {
