@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="~/css/owl.carousel.css">
     <link rel="stylesheet" href="~/css/main-style.css">
     <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/popupWindow.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,6 +29,21 @@
 </head>
 
 <body>
+    <div id="boxes">
+        <div id="dialog" class="window" style="overflow-y: scroll;">
+            @*<div id="patient">
+
+                </div>*@
+            <form>
+                <h2>Reset your Password</h2>
+                <input type="text" id="resetpassword_email" name="resetpassword_email" placeholder="Enter your Email Address" style="color: black;">
+            </form>
+
+            <div id="popupfoot"><a href="#" id="okay" class="close agree">Okay</a></div>
+        </div>
+    </div>
+    <div id="mask"></div>
+
     <div id="main-wrapper">
         <!-- Top Toolbar -->
         <!-- end toolbar -->
@@ -109,7 +125,7 @@
                                                 <input type="password" name="password" placeholder="Password" />
                                                 <button type="submit" id="submitLogin">Login</button>
                                                 <div class="login-with"> </div>
-                                                <div class="forget">Forgot your password? <a href="#.">Click Here</a></div>
+                                                <div class="forget">Forgot your password? <a id="forgot">Click Here</a></div>
                                             }
                                         </div>
                                         <div id="forget">
